@@ -1,4 +1,5 @@
-var $tile = $('#tile'),
+var $body = $('body'),
+    $tile = $('#tile'),
     $glare = $('.glare'),
     $layer = $('div[class*="layer-"]'),
     $frame = $('.frame'),
@@ -8,12 +9,14 @@ var $tile = $('#tile'),
     frames = ["0", "1"],
     frame = frames[Math.floor(Math.random() * frames.length)],
     frameURL = "img/b-" + frame + ".svg",
-    clipClass = "clip" + frame;
-
+    clipClass = "clip" + frame,
+    bgClass = "bg" + scene;
 
 $frame.css('background-image', 'url(' + frameURL + ')');
 $tile.addClass(clipClass);
 $shadowClip.addClass(clipClass);
+$body.addClass(bgClass);
+
 //$tile.removeClass();
 
 $layer.each(function(n) {

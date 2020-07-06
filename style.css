@@ -5,9 +5,16 @@ html {
 }
 
 body {
-    background: linear-gradient(to bottom, #f6f7fc 0%, #d5e1e8 40%);
     transform-style: preserve-3d;
-    transform: perspective(800px);
+    transform: perspective(800px) scale(0.5);
+}
+
+.bg0 {
+    background: linear-gradient(to bottom, #f6f7fc 0%, #d5e1e8 40%);
+}
+
+.bg1 {
+    background: linear-gradient(to bottom, #f6fcf7 0%, #d5e8d8 40%);
 }
 
 .frame {
