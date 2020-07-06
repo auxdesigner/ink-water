@@ -3,30 +3,37 @@ var $body = $('body'),
     $glare = $('.glare'),
     $layer = $('div[class*="layer-"]'),
     $frame = $('.frame'),
-    $shadowClip = $('.shadow-clip'),
-    scenes = ["0", "1"],
-    scene = scenes[Math.floor(Math.random() * scenes.length)],
-    frames = ["0", "1"],
-    frame = frames[Math.floor(Math.random() * frames.length)],
-    frameURL = "img/b-" + frame + ".svg",
-    clipClass = "clip" + frame,
-    bgClass = "bg" + scene;
+    $shadowClip = $('#shadow-clip'),
+    $templates = [
+        [0, [4]],
+        [1, [2, 4, 5]]
+    ],
+    $template = $templates[Math.floor(Math.random() * $templates.length)],
+    $scene = $template[0],
+    $frameURL = "img/b-" + $scene + ".svg",
+    $clipClass = "clip" + $scene,
+    $bgClass = "bg" + $scene,
+    $animation = $template[1];
 
-$frame.css('background-image', 'url(' + frameURL + ')');
-$tile.addClass(clipClass);
-$shadowClip.addClass(clipClass);
-$body.addClass(bgClass);
+// set frame image; add image clip, shadow clip, and background
+$frame.css('background-image', 'url(' + $frameURL + ')');
+$tile.addClass($clipClass);
+$shadowClip.addClass($clipClass);
+$body.addClass($bgClass);
 
-//$tile.removeClass();
-
+// add images and animations
 $layer.each(function(n) {
     var $this = $(this),
-        imgURL = "img/" + scene + "-" + n + ".svg";
-    $this.css('background-image', 'url(' + imgURL + ')');
+        $imgURL = "img/" + $scene + "-" + n + ".svg";
+    $this.css('background-image', 'url(' + $imgURL + ')');
 });
 
+$.each($animation, function(index, value) {
+    $animLayerClass = "layer-" + value;
+    $animLayer = $("." + $animLayerClass).addClass("anim");
+});
 
-
+//add mouse interaction
 $(window).on('mousemove', function(ev) {
     var w = $(window).width(),
         h = $(window).height(),
