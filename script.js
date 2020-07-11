@@ -2,6 +2,7 @@ var $body = $('body'),
     $tile = $('#tile'),
     $glare = $('.glare'),
     $layer = $('div[class*="layer-"]'),
+    $bird = $('.bird'),
     $frame = $('.frame'),
     $shadowClip = $('#shadow-clip'),
     $templates = [
@@ -54,6 +55,15 @@ $(window).on('mousemove', function(ev) {
     $tile.css('transform', transformTile);
 
     $layer.each(function() {
+        var $this = $(this),
+            offsetLayer = $this.data('offset') || 0,
+            transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
+        $this.css('-webkit-transform', transformLayer);
+        $this.css('transform', transformLayer);
+
+    });
+
+    $bird.each(function() {
         var $this = $(this),
             offsetLayer = $this.data('offset') || 0,
             transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
