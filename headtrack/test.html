@@ -1,0 +1,28 @@
+<script src="headtrackr.js"></script>
+
+<button id="start" onclick="start()">start</button>
+<button id="stop" onclick="stop()">stop</button>
+<canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
+<video id="inputVideo" autoplay loop style="display:none"></video>
+<script type="text/javascript">
+    var videoInput = document.getElementById('inputVideo');
+    var canvasInput = document.getElementById('inputCanvas');
+    var htracker = new headtrackr.Tracker();
+
+    function start() {
+        htracker.init(videoInput, canvasInput);
+        htracker.start();
+    }
+
+    function stop() {
+        htracker.stopStream();
+        htracker.stop();
+    }
+</script>
+
+<script>
+    document.addEventListener('facetrackingEvent', function(event) {
+        console.log("fx: " + event.x + ", fy:" + event.y)
+
+    });
+</script>
