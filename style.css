@@ -215,3 +215,15 @@ div[class*="layer-"] {
 #inputVideo {
     display: none;
 }
+
+.control {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: -200px;
+}
+
+#headtrackerMessage {
+    display: block;
+}
