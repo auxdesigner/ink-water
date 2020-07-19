@@ -206,3 +206,12 @@ div[class*="layer-"] {
         transform: rotate(0);
     }
 }
+
+.stop {
+    display: none;
+}
+
+#inputCanvas,
+#inputVideo {
+    display: none;
+}

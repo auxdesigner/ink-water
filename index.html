@@ -6,13 +6,12 @@
     <title>Ink</title>
     <link href="style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="headtrackr.js"></script>
 </head>
 
 <body>
     <div class="frame"></div>
     <div id="tile">
-        <div class="glare"></div>
-
         <div class="bird" data-offset="10">
             <div class="left-wing">
                 <span></span>
@@ -34,7 +33,14 @@
         <div id="shadow-clip"></div>
     </div>
 
+    <div class="control">
+        <button class="start">Start Headtracking</button>
+        <button class="stop">Stop Headtracking</button>
+    </div>
+    <canvas id="inputCanvas" width="320" height="240"></canvas>
+    <video id="inputVideo" autoplay loop></video>
 </body>
 <script src="script.js"></script>
+
 
 </html>
