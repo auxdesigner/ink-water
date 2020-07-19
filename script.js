@@ -1,38 +1,57 @@
 var $body = $('body'),
     $tile = $('#tile'),
-    $glare = $('.glare'),
     $layer = $('div[class*="layer-"]'),
     $bird = $('.bird'),
     $frame = $('.frame'),
-    $shadowClip = $('#shadow-clip'),
-    $templates = [
+    $shadowClip = $('#shadow-clip');
+
+var index = 0,
+    templates = [
         [0, [4]],
         [1, [2, 4, 5]]
     ],
-    $template = $templates[Math.floor(Math.random() * $templates.length)],
-    $scene = $template[0],
-    $frameURL = "img/b-" + $scene + ".svg",
-    $clipClass = "clip" + $scene,
-    $bgClass = "bg" + $scene,
-    $animation = $template[1];
+    template = templates[index];
 
-// set frame image; add image clip, shadow clip, and background
-$frame.css('background-image', 'url(' + $frameURL + ')');
-$tile.addClass($clipClass);
-$shadowClip.addClass($clipClass);
-$body.addClass($bgClass);
-
-// add images and animations
-$layer.each(function(n) {
-    var $this = $(this),
-        $imgURL = "img/" + $scene + "-" + n + ".svg";
-    $this.css('background-image', 'url(' + $imgURL + ')');
+$('.change').click(function() {
+    index++;
+    if (index > templates.length - 1) {
+        index = 0;
+    }
+    template = templates[index];
+    loadScene();
 });
 
-$.each($animation, function(index, value) {
-    $animLayerClass = "layer-" + value;
-    $animLayer = $("." + $animLayerClass).addClass("anim");
-});
+function loadScene() {
+    var $scene = template[0],
+        $frameURL = "img/b-" + $scene + ".svg",
+        $clipClass = "clip" + $scene,
+        $bgClass = "bg" + $scene,
+        $animation = template[1];
+
+    // set frame image; add image clip shape, shadow clip shape, and background
+    $frame.css('background-image', 'url(' + $frameURL + ')');
+    $tile.removeClass();
+    $tile.addClass($clipClass);
+    $shadowClip.removeClass();
+    $shadowClip.addClass($clipClass);
+    $body.removeClass();
+    $body.addClass($bgClass);
+    $layer.removeClass("anim");
+
+    // add scene images and animations
+    $layer.each(function(n) {
+        var $this = $(this),
+            $imgURL = "img/" + $scene + "-" + n + ".svg";
+        $this.css('background-image', 'url(' + $imgURL + ')');
+    });
+
+    $.each($animation, function(index, value) {
+        $animLayerClass = "layer-" + value;
+        $animLayer = $("." + $animLayerClass).addClass("anim");
+    });
+}
+
+loadScene();
 
 //add mouse interaction
 $(window).on('mousemove', function(ev) {
@@ -52,7 +71,6 @@ $(window).on('mousemove', function(ev) {
             transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
-
     });
 
     $bird.each(function() {
@@ -61,7 +79,6 @@ $(window).on('mousemove', function(ev) {
             transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
-
     });
 });
 
@@ -84,6 +101,7 @@ $('.stop').click(function() {
     $('.stop').hide();
 });
 
+// head interaction
 document.addEventListener('facetrackingEvent', function(event) {
     var faceX = 1 - event.x / 320,
         faceY = 1 - event.y / 240;
@@ -94,7 +112,6 @@ document.addEventListener('facetrackingEvent', function(event) {
             transformLayer = 'translateX(' + faceX * offsetLayer * 2 + 'px) translateY(' + faceY * offsetLayer * 2 + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
-
     });
 
     $bird.each(function() {
@@ -103,7 +120,5 @@ document.addEventListener('facetrackingEvent', function(event) {
             transformLayer = 'translateX(' + faceX * offsetLayer * 2 + 'px) translateY(' + faceY * offsetLayer * 2 + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
-
     });
-
 });
