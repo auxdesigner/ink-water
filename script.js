@@ -8,7 +8,8 @@ var $body = $('body'),
 var index = 0,
     templates = [
         [0, [4]],
-        [1, [2, 4, 5]]
+        [1, [2, 4, 5]],
+        [2, []]
     ],
     template = templates[index];
 

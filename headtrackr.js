@@ -1629,7 +1629,7 @@
 
             var supportMessages = {
                 "no getUserMedia": "getUserMedia is not supported in your browser :(",
-                "no camera": "no camera found :("
+                "no camera": "No camera found :("
             };
 
             var statusMessages = {
