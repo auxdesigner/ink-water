@@ -148,41 +148,27 @@
 
         this.init = function(video, canvas, setupVideo) {
             if (setupVideo === undefined || setupVideo == true) {
-                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigaor.MediaDevices.getUserMedia;
                 window.URL = window.URL || window.webkitURL || window.msURL || window.mozURL;
+
                 // check for camerasupport
                 if (navigator.getUserMedia) {
                     headtrackerStatus("getUserMedia");
-
-                    // chrome 19 shim
-                    var videoSelector = { video: true };
-                    if (window.navigator.appVersion.match(/Chrome\/(.*?) /)) {
-                        var chromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
-                        if (chromeVersion < 20) {
-                            videoSelector = "video";
-                        }
-                    };
-
-                    // opera shim
-                    if (window.opera) {
-                        window.URL = window.URL || {};
-                        if (!window.URL.createObjectURL) window.URL.createObjectURL = function(obj) { return obj; };
-                    }
-
-                    // set up stream
-                    navigator.getUserMedia(videoSelector, (function(stream) {
-                        headtrackerStatus("camera found");
-                        this.stream = stream;
-                        if (video.mozCaptureStream) {
-                            video.mozSrcObject = stream;
-                        } else {
-                            video.srcObject = stream;
-                        }
-                        video.play();
-                    }).bind(this), function() {
-                        headtrackerStatus("no camera");
-                        insertAltVideo(video);
-                    });
+                    var constraints = { audio: false, video: true };
+                    navigator.mediaDevices.getUserMedia(constraints)
+                        .then(function(mediaStream) {
+                            var video = document.querySelector('video');
+                            video.srcObject = mediaStream;
+                            video.onloadedmetadata = function(e) {
+                                video.play();
+                            };
+                            headtrackerStatus("camera found");
+                        })
+                        .catch(function(err) {
+                            console.log(err.name + ": " + err.message);
+                            headtrackerStatus("no camera");
+                            insertAltVideo(video);
+                        }); // always check for errors at the end.
                 } else {
                     headtrackerStatus("no getUserMedia");
                     if (!insertAltVideo(video)) {
