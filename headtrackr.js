@@ -391,16 +391,15 @@
         }
 
         this.stopStream = function() {
-            if (this.stream !== undefined) {
-                // Support for pre-standardisation browsers
-                if (this.stream.stop !== undefined) {
-                    this.stream.stop();
-                }
-                // Standards-compliant (per-stream)
-                else if (this.stream.getVideoTracks !== undefined) {
-                    this.stream.getVideoTracks().forEach(function(t) { t.stop(); })
-                }
-            }
+            var video = document.querySelector('video');
+            var stream = video.srcObject;
+            var tracks = stream.getTracks();
+
+            tracks.forEach(function(track) {
+                track.stop();
+            });
+
+            video.srcObject = null;
         }
 
         this.getFOV = function() {
