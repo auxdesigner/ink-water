@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink</title>
     <link href="style.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,34 +11,36 @@
 </head>
 
 <body>
-    <div class="frame"></div>
-    <div id="tile">
-        <div class="bird" data-offset="10">
-            <div class="left-wing">
-                <span></span>
+    <div class="wrapper">
+        <div class="frame"></div>
+        <div id="tile">
+            <div class="bird" data-offset="10">
+                <div class="left-wing">
+                    <span></span>
+                </div>
+                <div class="right-wing">
+                    <span></span>
+                </div>
             </div>
-            <div class="right-wing">
-                <span></span>
-            </div>
+
+            <div class="layer-0" data-offset="-40"></div>
+            <div class="layer-1" data-offset="-25"></div>
+            <div class="layer-2" data-offset="-10"></div>
+            <div class="layer-3" data-offset="5"></div>
+            <div class="layer-4" data-offset="20"></div>
+            <div class="layer-5" data-offset="35"></div>
+            <div class="layer-6" data-offset="50"></div>
+        </div>
+        <div class="shadow">
+            <div id="shadow-clip"></div>
         </div>
 
-        <div class="layer-0" data-offset="-40"></div>
-        <div class="layer-1" data-offset="-25"></div>
-        <div class="layer-2" data-offset="-10"></div>
-        <div class="layer-3" data-offset="5"></div>
-        <div class="layer-4" data-offset="20"></div>
-        <div class="layer-5" data-offset="35"></div>
-        <div class="layer-6" data-offset="50"></div>
-    </div>
-    <div class="shadow">
-        <div id="shadow-clip"></div>
-    </div>
-
-    <div class="control">
-        <button class="change">Change Scene</button>
-        <button class="start">Start Headtracking</button>
-        <button class="stop">Stop Headtracking</button>
-        <span id="headtrackerMessage"></span>
+        <div class="control">
+            <button class="change">Change scene</button>
+            <button class="start">Turn on camera</button>
+            <button class="stop">Turn off camera</button>
+            <span id="headtrackerMessage"></span>
+        </div>
     </div>
     <canvas id="inputCanvas" width="320" height="240"></canvas>
     <video id="inputVideo" autoplay loop></video>

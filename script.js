@@ -55,33 +55,33 @@ function loadScene() {
 loadScene();
 
 //add mouse interaction
-$(window).on('mousemove', function(ev) {
-    var w = $(window).width(),
-        h = $(window).height(),
-        offsetX = 0.5 - ev.pageX / w,
-        offsetY = 0.5 - ev.pageY / h,
-        offsetTile = $tile.data('offset'),
-        transformTile = 'translateY(' + -offsetX * offsetTile + 'px) rotateX(' + (-offsetY * offsetTile) + 'deg) rotateY(' + (offsetX * (offsetTile * 2)) + 'deg)';
+// $(window).on('mousemove', function(ev) {
+//     var w = $(window).width(),
+//         h = $(window).height(),
+//         offsetX = 0.5 - ev.pageX / w,
+//         offsetY = 0.5 - ev.pageY / h,
+//         offsetTile = $tile.data('offset'),
+//         transformTile = 'translateY(' + -offsetX * offsetTile + 'px) rotateX(' + (-offsetY * offsetTile) + 'deg) rotateY(' + (offsetX * (offsetTile * 2)) + 'deg)';
 
-    $tile.css('-webkit-transform', transformTile);
-    $tile.css('transform', transformTile);
+//     $tile.css('-webkit-transform', transformTile);
+//     $tile.css('transform', transformTile);
 
-    $layer.each(function() {
-        var $this = $(this),
-            offsetLayer = $this.data('offset') || 0,
-            transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
-        $this.css('-webkit-transform', transformLayer);
-        $this.css('transform', transformLayer);
-    });
+//     $layer.each(function() {
+//         var $this = $(this),
+//             offsetLayer = $this.data('offset') || 0,
+//             transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
+//         $this.css('-webkit-transform', transformLayer);
+//         $this.css('transform', transformLayer);
+//     });
 
-    $bird.each(function() {
-        var $this = $(this),
-            offsetLayer = $this.data('offset') || 0,
-            transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
-        $this.css('-webkit-transform', transformLayer);
-        $this.css('transform', transformLayer);
-    });
-});
+//     $bird.each(function() {
+//         var $this = $(this),
+//             offsetLayer = $this.data('offset') || 0,
+//             transformLayer = 'translateX(' + offsetX * offsetLayer + 'px) translateY(' + offsetY * offsetLayer + 'px)';
+//         $this.css('-webkit-transform', transformLayer);
+//         $this.css('transform', transformLayer);
+//     });
+// });
 
 // headtrack control
 var videoInput = document.getElementById('inputVideo'),
