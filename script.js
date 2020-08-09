@@ -91,8 +91,7 @@ var videoInput = document.getElementById('inputVideo'),
 $('.start').click(function() {
     htracker.init(videoInput, canvasInput);
     htracker.start();
-    $('.start').hide();
-    $('.stop').show();
+
 });
 
 $('.stop').click(function() {
@@ -110,7 +109,7 @@ document.addEventListener('facetrackingEvent', function(event) {
     $layer.each(function() {
         var $this = $(this),
             offsetLayer = $this.data('offset') || 0,
-            transformLayer = 'translateX(' + faceX * offsetLayer * 2 + 'px) translateY(' + faceY * offsetLayer * 2 + 'px)';
+            transformLayer = 'translateX(' + faceX * offsetLayer * 1 + 'px) translateY(' + faceY * offsetLayer * 1 + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
     });
@@ -118,7 +117,7 @@ document.addEventListener('facetrackingEvent', function(event) {
     $bird.each(function() {
         var $this = $(this),
             offsetLayer = $this.data('offset') || 0,
-            transformLayer = 'translateX(' + faceX * offsetLayer * 2 + 'px) translateY(' + faceY * offsetLayer * 2 + 'px)';
+            transformLayer = 'translateX(' + faceX * offsetLayer * 1 + 'px) translateY(' + faceY * offsetLayer * 1 + 'px)';
         $this.css('-webkit-transform', transformLayer);
         $this.css('transform', transformLayer);
     });

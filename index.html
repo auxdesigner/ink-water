@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="wrapper">
         <div class="frame"></div>
         <div id="tile">
@@ -34,13 +35,13 @@
         <div class="shadow">
             <div id="shadow-clip"></div>
         </div>
+    </div>
+    <div class="control">
+        <span id="headtrackerMessage">&nbsp;</span>
+        <button class="change">Change scene</button>
+        <button class="start">Turn on camera</button>
+        <button class="stop">Turn off camera</button>
 
-        <div class="control">
-            <button class="change">Change scene</button>
-            <button class="start">Turn on camera</button>
-            <button class="stop">Turn off camera</button>
-            <span id="headtrackerMessage"></span>
-        </div>
     </div>
     <canvas id="inputCanvas" width="320" height="240"></canvas>
     <video id="inputVideo" autoplay loop></video>

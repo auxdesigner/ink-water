@@ -215,7 +215,11 @@
             facetracker.track()
             var faceObj = facetracker.getTrackingObject({ debug: params.debug });
 
-            if (faceObj.detection == "WB") headtrackerStatus("whitebalance");
+            if (faceObj.detection == "WB") {
+                headtrackerStatus("whitebalance");
+                $('.start').hide();
+                $('.stop').show();
+            }
             if (firstRun && faceObj.detection == "VJ") headtrackerStatus("detecting");
 
             // check if we have a detection first
@@ -1618,12 +1622,12 @@
             };
 
             var statusMessages = {
-                "whitebalance": "Waiting for camera whitebalancing",
-                "detecting": "Please wait while camera is detecting your face...",
-                "hints": "We seem to have some problems detecting your face. Please make sure that your face is well and evenly lighted, and that your camera is working.",
-                "redetecting": "Lost track of face, trying to detect again..",
-                "lost": "Lost track of face :(",
-                "found": "Face found! Move your head!"
+                "whitebalance": "Waiting for camera whitebalancing...",
+                "detecting": "Please wait...",
+                "hints": "Hmm...I'm not good at this...",
+                "redetecting": "Lost track of you, trying again...",
+                "lost": "Lost track of you :(",
+                "found": "Gotcha! Try moving your head!"
             };
 
             var override = false;
@@ -1635,18 +1639,19 @@
                     if (!override) {
                         var messagep = document.getElementById('headtrackerMessage');
                         messagep.innerHTML = statusMessages[event.status];
-                        timeout = window.setTimeout(function() { messagep.innerHTML = ''; }, 3000);
+                        timeout = window.setTimeout(function() { messagep.innerHTML = '&nbsp;'; }, 5000);
                     }
                 } else if (event.status in supportMessages) {
                     override = true;
                     window.clearTimeout(timeout);
                     var messagep = document.getElementById('headtrackerMessage');
                     messagep.innerHTML = supportMessages[event.status];
-                    window.setTimeout(function() { messagep.innerHTML = 'added fallback video for demo'; }, 2000);
+                    //window.setTimeout(function() { messagep.innerHTML = 'added fallback video for demo'; }, 2000);
                     window.setTimeout(function() {
-                        messagep.innerHTML = '';
+                        messagep.innerHTML = '&nbsp;';
                         override = false;
-                    }, 4000);
+                        location.reload();
+                    }, 3000);
                 }
             }, true);
 
