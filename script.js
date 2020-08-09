@@ -1,3 +1,4 @@
+// var
 var $body = $('body'),
     $tile = $('#tile'),
     $layer = $('div[class*="layer-"]'),
@@ -13,6 +14,7 @@ var index = 0,
     ],
     template = templates[index];
 
+// change scene
 $('.change').click(function() {
     index++;
     if (index > templates.length - 1) {
@@ -22,6 +24,7 @@ $('.change').click(function() {
     loadScene();
 });
 
+// load scene
 function loadScene() {
     var $scene = template[0],
         $frameURL = "img/b-" + $scene + ".svg",
