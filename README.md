@@ -1,4 +1,4 @@
-# ink-water
+# Headtracking animation
 https://auxdesigner.github.io/headtrack/
 
 Illustrations from 58pic.com
