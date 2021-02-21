@@ -1627,7 +1627,8 @@
                 "hints": "Hmm...I'm not good at this...",
                 "redetecting": "Lost track of you, trying again...",
                 "lost": "Lost track of you :(",
-                "found": "Gotcha! Try moving your head!"
+                "found": "Gotcha! Try moving your head!",
+                "stopped": "&nbsp;"
             };
 
             var override = false;
